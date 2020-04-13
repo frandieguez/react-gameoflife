@@ -1,7 +1,7 @@
 import React from "react";
-import { CELL_SIZE } from "../constants";
+import { CELL_SIZE } from "../definitions/constants";
 
-interface CellProps {
+export interface CellProps {
   x: number;
   y: number;
 }
@@ -23,4 +23,7 @@ const Cell: React.FunctionComponent<CellProps> = ({ x, y }) => {
   return <div className="Cell" style={styles} />;
 };
 
-export default Cell;
+/**
+ * Use React.memo to memoize the Cell if previously rendered
+ */
+export default React.memo(Cell);

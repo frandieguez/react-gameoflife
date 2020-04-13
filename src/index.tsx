@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import GameOfLife from "./Game";
+import GameOfLife from "./components/GameOfLife";
 import * as serviceWorker from "./serviceWorker";
-import "./index.css";
+import "./styles/index.scss";
 
 ReactDOM.render(
   <React.StrictMode>

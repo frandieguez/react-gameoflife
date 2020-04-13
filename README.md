@@ -60,7 +60,7 @@ Hope you like it, and remember this is just a learn-while-doing application noth
 
 ## 💫 Deploy
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/frandieguez/react-gameollife)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/frandieguez/react-gameoflife)
 
 ## Possible thinks to add
 

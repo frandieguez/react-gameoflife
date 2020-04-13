@@ -2,7 +2,7 @@
 
 [![dependencies Status](https://david-dm.org/frandieguez/react-gameoflife/status.svg)](https://david-dm.org/frandieguez/react-gameoflife)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Build Status](https://travis-ci.org/frandieguez/react-gameoflife.svg?branch=master)](https://travis-ci.org/frandieguez/react-gameoflife)
+[![Build Status](https://travis-ci.org/frandieguez/react-gameoflife.svg?branch=master)](https://travis-ci.org/frandieguez/react-gameoflife) [![Build Status](https://travis-ci.org/frandieguez/react-gameoflife.svg?branch=master)](https://travis-ci.org/frandieguez/react-gameoflife)
 
 This project is just a quick just-for-fun project implementaion of the Conway's Game of life with React on CRA. Take it as a tribute implementation to Dr. Conway.
 

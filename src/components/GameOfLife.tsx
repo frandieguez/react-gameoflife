@@ -176,16 +176,16 @@ const GameOfLife: React.FunctionComponent = () => {
   };
 
   return (
-    <div className="Game">
+    <div className={`${isRunning ? "Running" : ""} Game`}>
       <header className="Header">
         <h2>Conway's Game of Life</h2>
       </header>
       <Board
+        cellSize={CELL_SIZE}
         width={ROWS * CELL_SIZE - 1}
         height={COLUMNS * CELL_SIZE - 1}
         onToggleCell={onCellClick}
         cells={cells}
-        isRunning={isRunning}
         ref={boardRef}
       />
       <div className="">Generation: {generation}</div>

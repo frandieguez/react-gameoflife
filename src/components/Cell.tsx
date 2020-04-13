@@ -1,9 +1,9 @@
 import React from "react";
-import { CELL_SIZE } from "../definitions/constants";
 
 export interface CellProps {
   x: number;
   y: number;
+  cellSize: number;
 }
 
 /**
@@ -12,12 +12,12 @@ export interface CellProps {
  * @param x the horizontal position in the grid
  * @param y the vertical position in the grid
  */
-const Cell: React.FunctionComponent<CellProps> = ({ x, y }) => {
+const Cell: React.FunctionComponent<CellProps> = ({ x, y, cellSize = 10 }) => {
   let styles = {
-    left: `${CELL_SIZE * x + 1}px`,
-    top: `${CELL_SIZE * y + 1}px`,
-    width: `${CELL_SIZE - 1}px`,
-    height: `${CELL_SIZE - 1}px`,
+    left: `${cellSize * x + 1}px`,
+    top: `${cellSize * y + 1}px`,
+    width: `${cellSize - 1}px`,
+    height: `${cellSize - 1}px`,
   };
 
   return <div className="Cell" style={styles} />;

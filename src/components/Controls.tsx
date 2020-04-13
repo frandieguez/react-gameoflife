@@ -22,6 +22,7 @@ let Controls: React.FunctionComponent<ControlsProps> = ({
     <input type="number" value={interval} onChange={onIntervalChange} /> msec{" "}
     <div className="buttons">
       <button
+        id="StartStop"
         className={`${isRunning ? "started" : ""} button rounded startStop`}
         onClick={() => {
           isRunning ? stopGame() : runGame();
@@ -33,6 +34,7 @@ let Controls: React.FunctionComponent<ControlsProps> = ({
       </button>
 
       <button
+        id="Reset"
         onClick={() => resetBoard()}
         disabled={isRunning}
         className="button rounded reset"

@@ -38,6 +38,12 @@
     ]
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "prettier": "^2.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "CI=true yarn test"
+    }
   }
 }

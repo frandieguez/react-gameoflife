@@ -1,7 +1,10 @@
-import { centerCells, parseLifFile } from "./lifFile";
-
-const ROWS = 30;
-const COLUMNS = 30;
+import {
+  BOARD_PADDING,
+  COLUMNS,
+  MAX_BOARD_DIMENSION,
+  ROWS,
+} from "../definitions/constants";
+import { boundingBoxSize, centerCells, parseLifFile } from "./lifFile";
 
 const gameFiles = import.meta.glob("../../games/*.lif", {
   query: "?raw",
@@ -41,11 +44,31 @@ test("patterns that fit the 30x30 board keep every cell after centering", () => 
   }
 });
 
-test("gosper glider gun is wider than the board, so it gets clipped", () => {
+test("gosper glider gun is wider than the default board, so centerCells alone would clip it", () => {
   const [path] = Object.keys(gameFiles).filter((p) =>
     p.endsWith("gosper-glider-gun.lif")
   );
   const parsed = parseLifFile(gameFiles[path]);
   expect(parsed.length).toBe(36);
   expect(centerCells(parsed, ROWS, COLUMNS).length).toBeLessThan(36);
+});
+
+test("but the app's auto-grow formula gives the gun enough room to keep every cell", () => {
+  const [path] = Object.keys(gameFiles).filter((p) =>
+    p.endsWith("gosper-glider-gun.lif")
+  );
+  const parsed = parseLifFile(gameFiles[path]);
+  const { width, height } = boundingBoxSize(parsed);
+
+  // Mirrors loadPatternFile's sizing in GameOfLife.tsx.
+  const grownCols = Math.min(
+    MAX_BOARD_DIMENSION,
+    Math.max(COLUMNS, width + BOARD_PADDING * 2)
+  );
+  const grownRows = Math.min(
+    MAX_BOARD_DIMENSION,
+    Math.max(ROWS, height + BOARD_PADDING * 2)
+  );
+
+  expect(centerCells(parsed, grownRows, grownCols).length).toBe(36);
 });

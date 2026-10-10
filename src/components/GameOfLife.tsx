@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
+  BOARD_PADDING,
   CELL_SIZE,
   COLUMNS,
   DEFAULT_INTERVAL,
+  MAX_BOARD_DIMENSION,
   ROWS,
 } from "../definitions/constants";
 import Board from "./Board";
 import Controls from "./Controls";
-import { centerCells, parseLifFile } from "../utils/lifFile";
+import { boundingBoxSize, centerCells, parseLifFile } from "../utils/lifFile";
 
 type Board = Array<Array<boolean>>;
 
@@ -153,16 +155,35 @@ const GameOfLife: React.FunctionComponent = () => {
     const reader = new FileReader();
     reader.onload = () => {
       const content = typeof reader.result === "string" ? reader.result : "";
-      const placedCells = centerCells(parseLifFile(content), rows, cols);
+      const parsedCells = parseLifFile(content);
+      if (parsedCells.length === 0) {
+        return;
+      }
+
+      // Grow the board to fit the pattern plus breathing room on each
+      // side, but never shrink below the default size or past a sane cap.
+      const { width, height } = boundingBoxSize(parsedCells);
+      const newCols = Math.min(
+        MAX_BOARD_DIMENSION,
+        Math.max(COLUMNS, width + BOARD_PADDING * 2)
+      );
+      const newRows = Math.min(
+        MAX_BOARD_DIMENSION,
+        Math.max(ROWS, height + BOARD_PADDING * 2)
+      );
+
+      const placedCells = centerCells(parsedCells, newRows, newCols);
       if (placedCells.length === 0) {
         return;
       }
 
-      let newBoard = makeEmptyBoard(rows, cols);
+      let newBoard = makeEmptyBoard(newRows, newCols);
       placedCells.forEach(({ x, y }) => {
         newBoard[y][x] = true;
       });
 
+      setRows(newRows);
+      setCols(newCols);
       boardMatrixRef.current = newBoard;
       setGeneration(0);
       setCells(makeCells(newBoard));
@@ -240,7 +261,10 @@ const GameOfLife: React.FunctionComponent = () => {
   };
 
   return (
-    <div className={`${isRunning ? "Running" : ""} Game`}>
+    <div
+      className={`${isRunning ? "Running" : ""} Game`}
+      style={{ "--board-width": `${cols * CELL_SIZE}px` } as React.CSSProperties}
+    >
       <header className="Header">
         <h1>Conway's Game of Life</h1>
         <p className="Tagline">A program you punch by hand, one generation at a time.</p>
@@ -252,8 +276,8 @@ const GameOfLife: React.FunctionComponent = () => {
         <div style={{ position: "relative" }}>
           <Board
             cellSize={CELL_SIZE}
-            width={ROWS * CELL_SIZE - 1}
-            height={COLUMNS * CELL_SIZE - 1}
+            width={cols * CELL_SIZE - 1}
+            height={rows * CELL_SIZE - 1}
             onToggleCell={onCellClick}
             cells={cells}
             ref={boardRef}

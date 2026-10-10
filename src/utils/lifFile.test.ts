@@ -1,4 +1,4 @@
-import { centerCells, parseLifFile } from "./lifFile";
+import { boundingBoxSize, centerCells, parseLifFile } from "./lifFile";
 
 test("parses a Life 1.06 file", () => {
   const content = ["#Life 1.06", "0 -1", "1 0", "-1 1", "0 1", "1 1"].join(
@@ -85,4 +85,18 @@ test("centerCells drops cells that fall outside the board", () => {
 
 test("centerCells returns an empty list for an empty pattern", () => {
   expect(centerCells([], 10, 10)).toEqual([]);
+});
+
+test("boundingBoxSize measures a pattern regardless of its origin", () => {
+  const cells = [
+    { x: -2, y: 5 },
+    { x: 3, y: 5 },
+    { x: 0, y: 8 },
+  ];
+
+  expect(boundingBoxSize(cells)).toEqual({ width: 6, height: 4 });
+});
+
+test("boundingBoxSize is 0x0 for an empty pattern", () => {
+  expect(boundingBoxSize([])).toEqual({ width: 0, height: 0 });
 });

@@ -29,6 +29,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2.5rem 1.25rem;
+  overflow-x: auto;
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -65,7 +66,10 @@ code {
   align-items: center;
   gap: 1.75rem;
   width: 100%;
-  max-width: 420px;
+  // --board-width is set inline from the actual board size, which only
+  // grows past the default (never below it) when a loaded pattern needs
+  // more room than the standard 30-column board.
+  max-width: max(420px, calc(var(--board-width, 299px) + 3.2rem));
 
   .Board {
     cursor: crosshair;

@@ -27,7 +27,7 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 ​
 The board starts seeded with an **R-pentomino** instead of an empty grid — just 5 cells, but the most famous "methuselah" in the Game of Life. On this board's finite 30x30 grid it evolves chaotically for around 400 generations before settling into a perpetual oscillation, so it never dies out and stays far more interesting than a simple glider.
 
-You can also load your own pattern: the upload button in the controls reads a `.lif`/`.life` file (both the Life 1.05 and Life 1.06 formats) and centers it on the board.
+You can also load your own pattern: the upload button in the controls reads a `.lif`/`.life` file (both the Life 1.05 and Life 1.06 formats) and centers it on the board. If the pattern is bigger than the default 30x30, the board grows to fit it (plus a margin to move/grow into), up to a 60-cell-per-side cap — it never shrinks below the default for a small pattern.
 
 ### 🕹 Example patterns
 
@@ -41,7 +41,7 @@ The [`games/`](games/) folder has 10 of the most famous and/or striking patterns
 | `pentadecathlon.lif` | Pentadecathlon | A period-15 oscillator, one of the first found with period > 2. |
 | `beacon.lif` | Beacon | A simple, very common period-2 oscillator. |
 | `toad.lif` | Toad | Along with the blinker, the most common period-2 oscillator. |
-| `gosper-glider-gun.lif` | Gosper glider gun | The pattern that proved unbounded growth is possible. **36 columns wide — wider than this board, so it loads clipped and won't fire.** |
+| `gosper-glider-gun.lif` | Gosper glider gun | The pattern that proved unbounded growth is possible. At 36 columns wide it no longer fits the default 30-wide board, so loading it grows the board to fit. |
 | `diehard.lif` | Diehard | 7 cells that vanish completely after exactly 130 generations. |
 | `acorn.lif` | Acorn | A 7-cell methuselah that takes 5206 generations to stabilize. |
 | `queen-bee-shuttle.lif` | Queen bee shuttle | A period-30 shuttle — the mechanism at the heart of the Gosper gun. |

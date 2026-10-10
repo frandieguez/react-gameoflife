@@ -58,6 +58,23 @@ export function parseLifFile(content: string): LifeCell[] {
   return cells;
 }
 
+// The pattern's own width and height, regardless of where its origin sits.
+export function boundingBoxSize(
+  cells: LifeCell[]
+): { width: number; height: number } {
+  if (cells.length === 0) {
+    return { width: 0, height: 0 };
+  }
+
+  const xs = cells.map((cell) => cell.x);
+  const ys = cells.map((cell) => cell.y);
+
+  return {
+    width: Math.max(...xs) - Math.min(...xs) + 1,
+    height: Math.max(...ys) - Math.min(...ys) + 1,
+  };
+}
+
 // Centers a pattern on a rows x cols board and drops any cell that still
 // falls outside it (for patterns larger than the board).
 export function centerCells(

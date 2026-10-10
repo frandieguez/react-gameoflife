@@ -38,7 +38,7 @@ Color strategy: Committed, two-register, same split discipline as the prior worl
 
 ## Responsive
 
-The card is a fixed 299×299px active grid, comfortable on mobile. Header, card, and reader deck flow in a centered single column (`max-width: 420px`); Controls stack vertically at ≤420px.
+The card defaults to a 299×299px active grid, comfortable on mobile. Loading a `.lif` file that doesn't fit grows the board (never shrinks it) to the pattern's size plus a 4-cell margin on every side, capped at 60 cells per axis; `--board-width` (set inline from the real board size) drives `.Game`'s `max-width`, which only grows past its 420px floor when a loaded pattern needs more room. `body` carries `overflow-x: auto` as a fallback for a pattern wide enough to exceed the viewport. Controls stack vertically at ≤420px viewport width.
 
 ## Provenance
 

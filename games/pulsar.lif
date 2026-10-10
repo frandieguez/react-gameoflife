@@ -1,0 +1,19 @@
+#Life 1.05
+#N Pulsar
+#D The most common period-3 oscillator, and one of the most visually
+#D striking patterns in the Game of Life: perfectly symmetric under
+#D 90-degree rotation and reflection, it pulses between three states.
+#P 0 0
+..***...***..
+.............
+*....*.*....*
+*....*.*....*
+*....*.*....*
+..***...***..
+.............
+..***...***..
+*....*.*....*
+*....*.*....*
+*....*.*....*
+.............
+..***...***..

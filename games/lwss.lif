@@ -1,0 +1,9 @@
+#Life 1.05
+#N Lightweight spaceship (LWSS)
+#D One of Conway's original four spaceships, alongside the glider. Travels
+#D orthogonally at maximum spaceship speed (half the speed of light).
+#P 0 0
+.*..*
+*....
+*...*
+****.

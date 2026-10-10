@@ -1,0 +1,9 @@
+#Life 1.05
+#N Glider
+#D The smallest, most famous spaceship in the Game of Life. Discovered by
+#D Richard K. Guy in 1970. Glides diagonally forever, 1 cell every 4
+#D generations. Its silhouette is the universal symbol of hacker culture.
+#P 0 0
+.*.
+..*
+***

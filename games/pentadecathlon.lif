@@ -1,0 +1,9 @@
+#Life 1.05
+#N Pentadecathlon
+#D A period-15 oscillator (hence the name) discovered by John Conway's
+#D group in 1970. One of the first oscillators found with a period
+#D higher than 2, and still one of the most commonly occurring in the wild.
+#P 0 0
+***..***..
+*..*..*..*
+***..***..

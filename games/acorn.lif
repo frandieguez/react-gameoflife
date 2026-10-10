@@ -1,0 +1,10 @@
+#Life 1.05
+#N Acorn
+#D A methuselah discovered by Charles Corderman: just 7 cells that take
+#D 5206 generations to stabilize, spawning many gliders along the way.
+#D On this board's finite, non-wrapping grid it stays chaotic and
+#D interesting for a long stretch before the walls cut the growth short.
+#P 0 0
+.*.....
+...*...
+**..***

@@ -1,0 +1,9 @@
+#Life 1.05
+#N Diehard
+#D A methuselah with only 7 live cells that vanishes completely after
+#D exactly 130 generations - longer than any other known 7-cell pattern
+#D takes to die out completely, which is why it's called "diehard".
+#P 0 0
+......*.
+**......
+.*...***

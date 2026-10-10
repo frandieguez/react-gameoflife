@@ -29,6 +29,23 @@ The board starts seeded with an **R-pentomino** instead of an empty grid — jus
 
 You can also load your own pattern: the upload button in the controls reads a `.lif`/`.life` file (both the Life 1.05 and Life 1.06 formats) and centers it on the board.
 
+### 🕹 Example patterns
+
+The [`games/`](games/) folder has 10 of the most famous and/or striking patterns in Game of Life history, ready to load with the upload button:
+
+| File | Pattern | Why it's here |
+| --- | --- | --- |
+| `glider.lif` | Glider | The smallest, most famous spaceship — the hacker-culture emblem. |
+| `lwss.lif` | Lightweight spaceship | One of Conway's original four spaceships. |
+| `pulsar.lif` | Pulsar | The most common period-3 oscillator; perfectly symmetric. |
+| `pentadecathlon.lif` | Pentadecathlon | A period-15 oscillator, one of the first found with period > 2. |
+| `beacon.lif` | Beacon | A simple, very common period-2 oscillator. |
+| `toad.lif` | Toad | Along with the blinker, the most common period-2 oscillator. |
+| `gosper-glider-gun.lif` | Gosper glider gun | The pattern that proved unbounded growth is possible. **36 columns wide — wider than this board, so it loads clipped and won't fire.** |
+| `diehard.lif` | Diehard | 7 cells that vanish completely after exactly 130 generations. |
+| `acorn.lif` | Acorn | A 7-cell methuselah that takes 5206 generations to stabilize. |
+| `queen-bee-shuttle.lif` | Queen bee shuttle | A period-30 shuttle — the mechanism at the heart of the Gosper gun. |
+
 ## ⚒ How I have built it
 
 I have used an iterative approach. Basically using only React without any additional library.

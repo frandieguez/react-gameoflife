@@ -1,0 +1,9 @@
+#Life 1.05
+#N Beacon
+#D A simple, extremely common period-2 oscillator: two 2x2 blocks
+#D diagonally touching, flashing their inner corners on and off.
+#P 0 0
+**..
+**..
+..**
+..**

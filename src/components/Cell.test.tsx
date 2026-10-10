@@ -5,7 +5,7 @@ import Cell from "./Cell";
 test("renders create empty controls", () => {
   const { container } = render(<Cell x={0} y={0} cellSize={10} />);
 
-  expect(container.firstChild.className).toBe("Cell");
+  expect(container.firstChild).toHaveClass("Cell", { exact: true });
 });
 
 test("renders create empty controls", () => {

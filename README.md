@@ -2,13 +2,13 @@
 
 [![dependencies Status](https://david-dm.org/frandieguez/react-gameoflife/status.svg)](https://david-dm.org/frandieguez/react-gameoflife)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Build Status](https://travis-ci.org/frandieguez/react-gameoflife.svg?branch=master)](https://travis-ci.org/frandieguez/react-gameoflife) [![Build Status](https://travis-ci.org/frandieguez/react-gameoflife.svg?branch=master)](https://travis-ci.org/frandieguez/react-gameoflife)
+[![CI](https://github.com/frandieguez/react-gameoflife/actions/workflows/ci.yml/badge.svg)](https://github.com/frandieguez/react-gameoflife/actions/workflows/ci.yml)
 
-This project is just a quick just-for-fun project implementaion of the Conway's Game of life with React on CRA. Take it as a tribute implementation to Dr. Conway.
+This project is just a quick just-for-fun project implementaion of the Conway's Game of life with React and Vite. Take it as a tribute implementation to Dr. Conway.
 
 ![Screenshot](screenshot.png?raw=true "Screenshot")
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project uses [Vite](https://vite.dev) and [Vitest](https://vitest.dev). It requires Node.js 22.12 or later.
 
 ## About the Game
 
@@ -47,7 +47,7 @@ Hope you like it, and remember this is just a learn-while-doing application noth
    Install the dependencies to work.
 
    ```
-   sh yarn install
+   yarn install
    ```
 
 2. **Start developing.**
@@ -55,8 +55,10 @@ Hope you like it, and remember this is just a learn-while-doing application noth
    Navigate into your new site’s directory and start it up.
 
    ```sh
-   yarn start
+   yarn dev
    ```
+
+   Other scripts: `yarn build` (production build in `dist/`), `yarn preview` and `yarn test`.
 
 ## 💫 Deploy
 

@@ -11,7 +11,7 @@ interface BoardProps {
 
 const Board = (
   { width, height, cellSize, onToggleCell, cells }: BoardProps,
-  ref: React.LegacyRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   return (
     <div

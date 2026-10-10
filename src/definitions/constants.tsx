@@ -1,7 +1,7 @@
 export const CELL_SIZE = 10;
 export const ROWS = 30;
 export const COLUMNS = 30;
-export const DEFAULT_INTERVAL = 1000;
+export const DEFAULT_INTERVAL = 400;
 
 // How much empty margin to leave around a loaded pattern on each side,
 // so it has room to move or grow instead of touching the walls.

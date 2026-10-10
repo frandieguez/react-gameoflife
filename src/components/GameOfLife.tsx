@@ -207,17 +207,32 @@ const GameOfLife: React.FunctionComponent = () => {
     <div className={`${isRunning ? "Running" : ""} Game`}>
       <header className="Header">
         <h1>Conway's Game of Life</h1>
-        <p className="Tagline">A cellular automaton you paint by hand.</p>
+        <p className="Tagline">A living culture, grown one generation at a time.</p>
       </header>
       <div className="Stage">
-        <Board
-          cellSize={CELL_SIZE}
-          width={ROWS * CELL_SIZE - 1}
-          height={COLUMNS * CELL_SIZE - 1}
-          onToggleCell={onCellClick}
-          cells={cells}
-          ref={boardRef}
-        />
+        <div className="PlateFrame">
+          <Board
+            cellSize={CELL_SIZE}
+            width={ROWS * CELL_SIZE - 1}
+            height={COLUMNS * CELL_SIZE - 1}
+            onToggleCell={onCellClick}
+            cells={cells}
+            ref={boardRef}
+          />
+          <span className="Crosshair tl" />
+          <span className="Crosshair tr" />
+          <span className="Crosshair bl" />
+          <span className="Crosshair br" />
+        </div>
+        <svg className="Stamp" viewBox="0 0 54 54" aria-hidden="true">
+          <circle cx="27" cy="27" r="22" stroke="currentColor" strokeWidth="0.75" />
+          <path id="stampPath" fill="none" d="M27,5 a22,22 0 1,1 -0.1,0" />
+          <text>
+            <textPath href="#stampPath" startOffset="0%">
+              LIVE CULTURE &#8226; EST. 1970 &#8226; LIVE CULTURE &#8226; EST. 1970 &#8226;
+            </textPath>
+          </text>
+        </svg>
         <div className="Stat">
           <span>Generation</span>
           <span className="Stat-value">{generation}</span>

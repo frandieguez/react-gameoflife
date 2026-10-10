@@ -4,40 +4,42 @@
 
 ## World
 
-"Culture Plate": the board is a specimen under observation, not a screen. Conway's cells are bioluminescent colonies growing and dying on a warm, backlit culture plate sitting in a dark incubator housing on a lab bench — refusing both the neon-hacker-terminal costume this project wore before and a pastel edtech-cute opposite.
+"Punch Card": the board is a Hollerith-style punch card loaded into a reader, not a screen. A live cell is a physical rectangular hole punched through warm kraft card stock, glowing amber with the reader's lamp light; a dead position stays a faint pre-printed registration dot, never simply blank.
 
-Chosen via the impeccable `concept-seed --scope direction --mode experience` roll (seed key `c6986f96`, assigned index 3 of the grounded candidate list — "Petri dish / microbiology culture plate under a scope"). Direction contract recorded at `.impeccable/surfaces/src-components-gameoflife-tsx.md`.
+This is the user's own pinned choice — originally offered as "Impeccable's pick" (the agent's own top-ranked grounded candidate) in the direction round that assigned a different direction ("Culture Plate", seed `c6986f96`, dice index 3) by the `concept-seed` roll. A pinned user choice outranks the roll by the flow's own rules; the pick was recorded via `concept-seed --kind pick`. Direction contract at `.impeccable/surfaces/src-components-gameoflife-tsx.md`.
 
 ## Palette
 
-- `--bench` `#170f0a` — the page/room, warm near-black (never cold blue-black).
-- `--panel` `#241a12` — the incubator housing (Stage and Controls panels).
-- `--plate-top` `#f6e8c8` / `--plate-edge` `#e4c98e` — the agar itself: warm cream/amber, always backlit, never black.
-- `--colony` `rgb(72, 224, 178)` — live cells, the single saturated accent, teal-bioluminescent against the warm plate.
-- `--stamp-ink` `#b35a35` — the rotating specimen stamp and the "paused" state.
-- Tape labels (`#efe2c0` background, `--ink-on-light` `#2d2013` text) — generation and speed readouts.
+- `--desk` `#141110` — the room/desk the reader sits on.
+- `--deck` `#211c18` — the reader's machine chassis (the Controls panel).
+- `--card` `#ddc9a0` / `--card-shade` `#d2bc8e` / `--card-edge` `#c3ab79` — the kraft card stock itself (the Stage panel), gradient top-to-bottom.
+- `--hole` `rgb(255, 179, 71)` — the single saturated accent: amber reader-lamp light glowing through every punched hole, the primary action, and focus/selection.
+- `--ink` `#3a2d1a` / `--ink-muted` `#5a4425` — sepia print ink on the card (tuned dark enough to clear 4.5:1 against the card's mid-tone — an earlier, lighter muted tone measured under that floor and was corrected after a manual contrast check).
+- `--ink-on-dark` / `--ink-on-dark-muted` — text on the machine chassis.
 
-Color strategy: Committed, two-register. The housing/bench stays dark and warm; the plate itself is the one light, saturated region — light-vs-dark chosen from the use scene (a lit specimen on a dim bench), not from category default.
+Color strategy: Committed, two-register, same split discipline as the prior world but swapped: here the *upper* region (the card) is the light, warm, printed surface, and the *lower* region (the reader deck) is the dark machine — paper above, machine below.
 
 ## Type
 
-- Display/UI: Poppins (incumbent, kept deliberately — legible, warm enough not to clash with the lab register).
-- Data/measurement only: Space Mono, for the generation counter and the millisecond interval — never used as a generic "technical" costume elsewhere.
+- Display/UI: Poppins (incumbent, kept).
+- Data/measurement and all card/deck chrome: Space Mono — doubly justified here, since fixed-pitch type is literally what punch-card-era computing used.
 
 ## Components
 
-- **Stage**: the incubator housing — a dark rounded panel with an ambient offset+blur shadow, that flickers on (`stage-flicker-in`) once per load like a lamp finding its filament before settling, rather than a flat fade.
-- **PlateFrame / Board**: the plate keeps its exact pixel grid and click math untouched. Its background is a per-cell radial-gradient dot pattern — every one of the 900 wells stays faintly etched even when empty, so a dead cell is never simply invisible. Four small registration crosshairs mark the plate's corners, settling in just after the plate itself is visible.
-- **Cell**: a circular well, filled with a soft, tightly-contained glow (not a wide blurred halo) so adjacent live cells stay individually legible instead of merging into a blob — product clarity (the grid reading as discrete cells) was prioritized over the originally-drafted wider "layered ring" glow once built and inspected.
-- **Stamp**: an SVG circular seal ("LIVE CULTURE · EST. 1970", 1970 being the year Conway published Life in Scientific American) rotating slowly and continuously, pure decoration, `pointer-events: none`.
-- **Stat / SpeedControl**: cream "lab tape" strips, slightly rotated, holding the generation and interval readouts in Space Mono.
-- **Buttons**: circular, 2.75rem (≥44px touch target). Play is the filled colony-teal action; running state switches to a stamp-ink ring; Reset dims to 35% opacity + `not-allowed` while running.
-- **Motion**: three authored, state-scoped moments — the one-time lamp-flicker entrance, a slow ambient "breathe" pulse on the plate while a simulation runs, and a quick scale/fade when any cell is born. All disabled under `prefers-reduced-motion`.
+- **Stage ("the card")**: kraft card stock with a `clip-path`-cut top-left corner (the real Hollerith registration cut), a feed-in entrance (`card-feed-in`: slides up from below with a decisive snap, no bounce).
+- **ColumnTicks**: a thin repeating-gradient strip of print-registration ticks along the top margin, standing in for a card's column index marks.
+- **Sprockets**: repeating-gradient void columns down the card's left/right margins.
+- **Board**: unchanged pixel grid and click math. Every one of the 900 positions keeps a faint printed registration dot even when unpunched.
+- **Cell**: a small rectangular (2px radius) die-cut hole, amber-lit, with a tight inset rim and a small contained glow — tuned from the start (not after a legibility miss this time) to stay individually legible even when several live cells sit adjacent.
+- **ScanBar**: a horizontal amber band that sweeps once top-to-bottom right after the card feeds in (confirming the seeded holes), then loops continuously, slower, while a simulation runs — the signature "reader actively scanning" cue.
+- **Stat**: a tear-off ticket stub (dashed top rule, sepia ink) holding the generation readout, printed directly on the card rather than a separate panel.
+- **Buttons**: square-ish (3px radius, not pill-shaped) to read as reader-deck keys rather than soft app buttons; Play fills amber, Reset dims to 35% opacity + `not-allowed` while running.
+- **Motion**: three state-scoped authored moments — the one-time card-feed entrance + scan sweep, the continuous slower scan loop while running, and a quick "impact" punch-in scale on every newly-born cell. All disabled under `prefers-reduced-motion`.
 
 ## Responsive
 
-The plate is a fixed 299×299px, already comfortable on mobile. Header, Stage, and Controls flow in a centered single column (`max-width: 420px`); the Controls row stacks vertically at ≤420px.
+The card is a fixed 299×299px active grid, comfortable on mobile. Header, card, and reader deck flow in a centered single column (`max-width: 420px`); Controls stack vertically at ≤420px.
 
 ## Provenance
 
-Replaces the prior "Living circuit" dark/neon world in full (no tokens carried over) per an explicit user request to run impeccable's full redesign flow and land somewhere "más impresionante y novedoso." Challengers considered and declined in favor of the assigned direction: an oscilloscope/signal-bench world (strong audience identification, but too close to the just-retired neon-terminal register and to a continuous-signal grammar that doesn't fit discrete cells) and a vernacular kiosk-print world (strong structural fit — dead cell as an "empty rule box" — but weaker instant identification as Conway's Game of Life). Their donations were folded into this direction: tape-label texture, flat-layered (non-blurred) glow discipline, the ghost/empty-well idea, and the registration-crosshair + rotating stamp chrome. No new npm dependencies; Poppins and Space Mono are both loaded the same way (Google Fonts, already established by the prior pass).
+Replaces the "Culture Plate" world in full (no tokens carried over), per the user explicitly choosing the previously-declined "Impeccable's pick" direction over the dice-assigned one. No new npm dependencies; Poppins and Space Mono are both already loaded via Google Fonts from the prior passes.

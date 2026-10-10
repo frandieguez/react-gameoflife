@@ -63,10 +63,36 @@ let makeCells = (matrix) => {
   return cells;
 };
 
+// A glider: the canonical Game of Life pattern that keeps moving
+// instead of dying out, as opposed to an empty or random starting board.
+const GLIDER_PATTERN: Array<[number, number]> = [
+  [0, 1],
+  [1, 2],
+  [2, 0],
+  [2, 1],
+  [2, 2],
+];
+
+let applyPattern = (
+  board: Board,
+  pattern: Array<[number, number]>,
+  startY: number,
+  startX: number
+): Board => {
+  pattern.forEach(([dy, dx]) => {
+    board[startY + dy][startX + dx] = true;
+  });
+  return board;
+};
+
+let makeInitialBoard = (rows: number, cols: number): Board =>
+  applyPattern(makeEmptyBoard(rows, cols), GLIDER_PATTERN, 1, 1);
+
 const GameOfLife: React.FunctionComponent = () => {
   const [rows, setRows] = useState(ROWS);
   const [cols, setCols] = useState(COLUMNS);
-  const [cells, setCells] = useState([]);
+  const boardMatrixRef = useRef<Board>(makeInitialBoard(ROWS, COLUMNS));
+  const [cells, setCells] = useState(() => makeCells(boardMatrixRef.current));
   let [generation, setGeneration] = useState(0);
   const [timeForEachGeneration, settimeForGeneration] = useState(
     DEFAULT_INTERVAL
@@ -74,7 +100,6 @@ const GameOfLife: React.FunctionComponent = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [timer, setTimer] = useState(null);
   const timerRef = useRef(timer);
-  const boardMatrixRef = useRef<Board>(makeEmptyBoard(ROWS, COLUMNS));
 
   useEffect(() => {
     return () => {

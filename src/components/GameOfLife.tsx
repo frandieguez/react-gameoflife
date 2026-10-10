@@ -206,17 +206,23 @@ const GameOfLife: React.FunctionComponent = () => {
   return (
     <div className={`${isRunning ? "Running" : ""} Game`}>
       <header className="Header">
-        <h2>Conway's Game of Life</h2>
+        <h1>Conway's Game of Life</h1>
+        <p className="Tagline">A cellular automaton you paint by hand.</p>
       </header>
-      <Board
-        cellSize={CELL_SIZE}
-        width={ROWS * CELL_SIZE - 1}
-        height={COLUMNS * CELL_SIZE - 1}
-        onToggleCell={onCellClick}
-        cells={cells}
-        ref={boardRef}
-      />
-      <div className="">Generation: {generation}</div>
+      <div className="Stage">
+        <Board
+          cellSize={CELL_SIZE}
+          width={ROWS * CELL_SIZE - 1}
+          height={COLUMNS * CELL_SIZE - 1}
+          onToggleCell={onCellClick}
+          cells={cells}
+          ref={boardRef}
+        />
+        <div className="Stat">
+          <span>Generation</span>
+          <span className="Stat-value">{generation}</span>
+        </div>
+      </div>
       <Controls
         isRunning={isRunning}
         interval={timeForEachGeneration}

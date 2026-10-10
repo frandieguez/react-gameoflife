@@ -14,10 +14,6 @@ This project uses [Vite](https://vite.dev) and [Vitest](https://vitest.dev). It 
 
 [Conway's Game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is a cellular automaton devised by the British mathematician John Horton Conway in 1970.
 
-- Have a list of predefined list of Cities around the work
-- In the initial list show the current weather for each city
-- When the user clicks on one city the sidebar must show the forecast for that city
-
 ### 🎲 Rules
 
 The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead, (or populated and unpopulated, respectively). Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:

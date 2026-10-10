@@ -63,8 +63,6 @@ let makeCells = (matrix) => {
   return cells;
 };
 
-let board: Board;
-
 const GameOfLife: React.FunctionComponent = () => {
   const [rows, setRows] = useState(ROWS);
   const [cols, setCols] = useState(COLUMNS);
@@ -76,10 +74,9 @@ const GameOfLife: React.FunctionComponent = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [timer, setTimer] = useState(null);
   const timerRef = useRef(timer);
+  const boardMatrixRef = useRef<Board>(makeEmptyBoard(ROWS, COLUMNS));
 
   useEffect(() => {
-    board = makeEmptyBoard(ROWS, COLUMNS);
-
     return () => {
       if (timer) {
         window.clearTimeout(timer);
@@ -107,7 +104,7 @@ const GameOfLife: React.FunctionComponent = () => {
   };
 
   let resetBoard = () => {
-    board = makeEmptyBoard(rows, cols);
+    boardMatrixRef.current = makeEmptyBoard(rows, cols);
 
     setCells([]);
   };
@@ -118,22 +115,28 @@ const GameOfLife: React.FunctionComponent = () => {
 
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
-        let neighbors = calculateNeighbors(board, x, y, cols, rows);
-        if (board[y][x]) {
+        let neighbors = calculateNeighbors(
+          boardMatrixRef.current,
+          x,
+          y,
+          cols,
+          rows
+        );
+        if (boardMatrixRef.current[y][x]) {
           if (neighbors === 2 || neighbors === 3) {
             newBoard[y][x] = true;
           } else {
             newBoard[y][x] = false;
           }
         } else {
-          if (!board[y][x] && neighbors === 3) {
+          if (!boardMatrixRef.current[y][x] && neighbors === 3) {
             newBoard[y][x] = true;
           }
         }
       }
     }
 
-    board = newBoard;
+    boardMatrixRef.current = newBoard;
     let newCells = makeCells(newBoard);
     console.log(newCells);
     setCells(newCells);
@@ -168,10 +171,10 @@ const GameOfLife: React.FunctionComponent = () => {
     const y = Math.floor(offsetY / CELL_SIZE);
 
     if (x >= 0 && x <= cols && y >= 0 && y <= rows) {
-      board[y][x] = !board[y][x];
+      boardMatrixRef.current[y][x] = !boardMatrixRef.current[y][x];
     }
 
-    let newCells = makeCells(board);
+    let newCells = makeCells(boardMatrixRef.current);
     setCells(newCells);
   };
 

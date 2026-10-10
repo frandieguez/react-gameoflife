@@ -197,10 +197,17 @@ code {
 
 .Cell {
   position: absolute;
-  border-radius: 2px;
-  background: var(--hole);
-  box-shadow: inset 0 0 0 1px rgba(90, 60, 20, 0.5),
-    0 0 2px rgba(var(--hole-rgb), 0.7);
+  border-radius: 1px;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    #fff3d9 0%,
+    var(--hole) 45%,
+    #8a4e12 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba(40, 24, 8, 0.6),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.35),
+    inset -1px -1px 1.5px rgba(40, 24, 8, 0.45),
+    0 0 3px rgba(var(--hole-rgb), 0.5);
   animation: punch-in 0.16s var(--ease-snap) both;
 }
 

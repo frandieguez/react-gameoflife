@@ -12,10 +12,16 @@ test("renders create empty controls", () => {
   let x = 10;
   let y = 10;
   let cellSize = 10;
+  const holeWidth = cellSize * 0.5;
+  const holeHeight = cellSize * 0.8;
   const { container } = render(<Cell x={x} y={y} cellSize={cellSize} />);
 
-  expect(container.firstChild).toHaveStyle(`top: ${cellSize * x + 1}px`);
-  expect(container.firstChild).toHaveStyle(`left: ${cellSize * y + 1}px`);
-  expect(container.firstChild).toHaveStyle(`width: ${cellSize - 1}px`);
-  expect(container.firstChild).toHaveStyle(`height: ${cellSize - 1}px`);
+  expect(container.firstChild).toHaveStyle(
+    `left: ${cellSize * x + (cellSize - holeWidth) / 2}px`
+  );
+  expect(container.firstChild).toHaveStyle(
+    `top: ${cellSize * y + (cellSize - holeHeight) / 2}px`
+  );
+  expect(container.firstChild).toHaveStyle(`width: ${holeWidth}px`);
+  expect(container.firstChild).toHaveStyle(`height: ${holeHeight}px`);
 });

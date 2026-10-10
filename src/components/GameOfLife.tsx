@@ -63,14 +63,15 @@ let makeCells = (matrix) => {
   return cells;
 };
 
-// A glider: the canonical Game of Life pattern that keeps moving
-// instead of dying out, as opposed to an empty or random starting board.
-const GLIDER_PATTERN: Array<[number, number]> = [
+// The R-pentomino: just 5 cells, but the most famous "methuselah" in
+// the Game of Life — it evolves chaotically for 1103 generations before
+// settling, far longer and more intricate than a glider's simple glide.
+const R_PENTOMINO_PATTERN: Array<[number, number]> = [
   [0, 1],
-  [1, 2],
-  [2, 0],
+  [0, 2],
+  [1, 0],
+  [1, 1],
   [2, 1],
-  [2, 2],
 ];
 
 let applyPattern = (
@@ -85,8 +86,15 @@ let applyPattern = (
   return board;
 };
 
+// Centered so the chaotic spread has equal room to unfold in every
+// direction before this board's finite, non-wrapping edges cut it off.
 let makeInitialBoard = (rows: number, cols: number): Board =>
-  applyPattern(makeEmptyBoard(rows, cols), GLIDER_PATTERN, 1, 1);
+  applyPattern(
+    makeEmptyBoard(rows, cols),
+    R_PENTOMINO_PATTERN,
+    Math.floor(rows / 2) - 1,
+    Math.floor(cols / 2) - 1
+  );
 
 const GameOfLife: React.FunctionComponent = () => {
   const [rows, setRows] = useState(ROWS);

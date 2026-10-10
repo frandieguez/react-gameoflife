@@ -6,6 +6,8 @@
 
 This project is just a quick just-for-fun project implementaion of the Conway's Game of life with React and Vite. Take it as a tribute implementation to Dr. Conway.
 
+The board loads as a **punch card**: live cells are amber-lit rectangular holes punched through warm kraft card stock, read by a reader deck below it. See [DESIGN.md](DESIGN.md) for the full visual system.
+
 ![Screenshot](screenshot.png?raw=true "Screenshot")
 
 This project uses [Vite](https://vite.dev) and [Vitest](https://vitest.dev). It requires Node.js 22.12 or later.
@@ -23,6 +25,7 @@ Any live cell with two or three live neighbours lives on to the next generation.
 Any live cell with more than three live neighbours dies, as if by overpopulation.
 Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 ​
+The board starts seeded with an **R-pentomino** instead of an empty grid — just 5 cells, but the most famous "methuselah" in the Game of Life. On this board's finite 30x30 grid it evolves chaotically for around 400 generations before settling into a perpetual oscillation, so it never dies out and stays far more interesting than a simple glider.
 
 ## ⚒ How I have built it
 

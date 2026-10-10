@@ -332,6 +332,36 @@ code {
     }
   }
 
+  .load {
+    position: relative;
+
+    input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    &.is-disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+
+      input {
+        pointer-events: none;
+      }
+    }
+
+    &:has(input:focus-visible) {
+      outline: 2px solid var(--hole);
+      outline-offset: 3px;
+    }
+  }
+
   .startStop {
     background: var(--hole);
     border-color: var(--hole);

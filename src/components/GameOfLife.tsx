@@ -7,6 +7,7 @@ import {
 } from "../definitions/constants";
 import Board from "./Board";
 import Controls from "./Controls";
+import { centerCells, parseLifFile } from "../utils/lifFile";
 
 type Board = Array<Array<boolean>>;
 
@@ -142,6 +143,33 @@ const GameOfLife: React.FunctionComponent = () => {
     setCells([]);
   };
 
+  let loadPatternFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    event.target.value = "";
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const content = typeof reader.result === "string" ? reader.result : "";
+      const placedCells = centerCells(parseLifFile(content), rows, cols);
+      if (placedCells.length === 0) {
+        return;
+      }
+
+      let newBoard = makeEmptyBoard(rows, cols);
+      placedCells.forEach(({ x, y }) => {
+        newBoard[y][x] = true;
+      });
+
+      boardMatrixRef.current = newBoard;
+      setGeneration(0);
+      setCells(makeCells(newBoard));
+    };
+    reader.readAsText(file);
+  };
+
   let runIteration = () => {
     console.log("generation nº ", new Date().getTime());
     let newBoard: Board = makeEmptyBoard(rows, cols);
@@ -244,6 +272,7 @@ const GameOfLife: React.FunctionComponent = () => {
         stopGame={stopGame}
         runGame={runGame}
         resetBoard={resetBoard}
+        onLoadPatternFile={loadPatternFile}
       />
     </div>
   );

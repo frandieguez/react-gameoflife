@@ -7,6 +7,7 @@ interface ControlsProps {
   stopGame: Function;
   runGame: Function;
   resetBoard: Function;
+  onLoadPatternFile(event: React.ChangeEvent<HTMLInputElement>): any;
 }
 
 let Controls: React.FunctionComponent<ControlsProps> = ({
@@ -16,6 +17,7 @@ let Controls: React.FunctionComponent<ControlsProps> = ({
   stopGame,
   runGame,
   resetBoard,
+  onLoadPatternFile,
 }) => (
   <div className="Controls">
     <label className="SpeedControl">
@@ -34,6 +36,17 @@ let Controls: React.FunctionComponent<ControlsProps> = ({
     </label>
 
     <div className="buttons">
+      <label
+        id="Load"
+        className={`button load ${isRunning ? "is-disabled" : ""}`}
+        aria-label="Load a .lif pattern file"
+      >
+        <input type="file" accept=".lif,.life" onChange={onLoadPatternFile} disabled={isRunning} />
+        <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3l5 5h-3v7h-4V8H7l5-5zm-7 14h14v2H5v-2z" />
+        </svg>
+      </label>
+
       <button
         id="StartStop"
         className={`button startStop ${isRunning ? "is-running" : ""}`}

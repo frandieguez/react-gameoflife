@@ -27,6 +27,8 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 ​
 The board starts seeded with an **R-pentomino** instead of an empty grid — just 5 cells, but the most famous "methuselah" in the Game of Life. On this board's finite 30x30 grid it evolves chaotically for around 400 generations before settling into a perpetual oscillation, so it never dies out and stays far more interesting than a simple glider.
 
+You can also load your own pattern: the upload button in the controls reads a `.lif`/`.life` file (both the Life 1.05 and Life 1.06 formats) and centers it on the board.
+
 ## ⚒ How I have built it
 
 I have used an iterative approach. Basically using only React without any additional library.
@@ -68,7 +70,6 @@ Hope you like it, and remember this is just a learn-while-doing application noth
 I've implemented this "toy" as fast as possible so I'm quite sure this is not something i could be really proud of. Therefore, here are some ideas to improve it or to add additional features.
 
 - Migrate to a reducer (react context and reducer) to manage the state of the board and cells.
-- Add a system to import .lif files into de board.
 
 ## ❔ And... what else?
 

@@ -13,8 +13,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          package-manager-cache: false
       - run: corepack enable
-      - run: corepack prepare yarn@4.17.1 --activate
       - run: yarn install --immutable
       - run: yarn vitest run
       - run: yarn build

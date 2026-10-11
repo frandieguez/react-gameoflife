@@ -5,6 +5,9 @@ on:
     branches: [master]
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,3 +20,29 @@ jobs:
       - run: yarn install --immutable
       - run: yarn vitest run
       - run: yarn build
+
+      # GitHub Pages serves the app under /react-gameoflife/, so rebuild with
+      # that base only for the Pages artifact; other deploys keep serving at /.
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: yarn vite build --base=/react-gameoflife/
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

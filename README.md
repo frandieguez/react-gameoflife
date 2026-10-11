@@ -80,6 +80,8 @@ Hope you like it, and remember this is just a learn-while-doing application noth
 
 ## 💫 Deploy
 
+Every push to `master` is published to GitHub Pages by the CI workflow: <https://frandieguez.github.io/react-gameoflife/>. It needs **Settings → Pages → Source: GitHub Actions** enabled once in the repository.
+
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/frandieguez/react-gameoflife)
 
 ## Possible thinks to add
